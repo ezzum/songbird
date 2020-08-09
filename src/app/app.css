@@ -1,0 +1,9 @@
+body {
+    background-color: #222;
+}
+.app {
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #fff;
+    padding: 0 50px;
+}

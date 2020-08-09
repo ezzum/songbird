@@ -1,0 +1,36 @@
+.header {
+    width: 100%;
+    margin-top: 20px;
+}
+.top-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.logo {
+    background-image: url(../img/songbird_logo.png);
+    width: 240px;
+    height: 70px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.pagination {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.page-item {
+    flex-grow: 1;
+    text-align: center;
+}
+.page-link {
+    background-color: #008866;
+    color: #ffffff;
+    cursor: default;
+    pointer-events: none;
+    border: none;
+}
+.active {
+    background-color: #00bc8c;
+}
