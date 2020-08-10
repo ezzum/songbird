@@ -22,12 +22,6 @@ const Header = ({items}) => {
             </div>
             <ul className="pagination">
                 {elements}
-              {/* <li className="page-item"><a className="page-link active" href="/#">Разминка</a></li>
-              <li className="page-item"><a className="page-link" href="/#">Воробьиные</a></li>
-              <li className="page-item"><a className="page-link" href="/#">Лесные птицы</a></li>
-              <li className="page-item"><a className="page-link" href="/#">Певчие птицы</a></li>
-              <li className="page-item"><a className="page-link" href="/#">Хищные птицы</a></li>
-              <li className="page-item"><a className="page-link" href="/#">Морские птицы</a></li> */}
             </ul>
         </div>
     )
