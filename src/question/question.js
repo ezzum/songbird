@@ -2,32 +2,29 @@ import React from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import './question.css';
 
-const Question = ( {data} ) => {
+const Question = ( {data, randomIdx, levelWin} ) => {
 
     const [level] = data;
-    const {win} = level;
-    const length = level.data.length;
-    const randomBird = level.data[Math.floor(Math.random() * length)];
+    const randomBird = level.data[randomIdx-1];
     let {name} = randomBird;
     const image = {
         backgroundImage: `url(${randomBird.image})`
     };
 
     
-    if (!win) {
+    if (!levelWin) {
         name = '******';
         image.backgroundImage = ''
     }
 
     return (
         <div className='quest-block'>
-            <div className='quest-image' style={image}></div>
+            <div className='quest-image' style={image} ></div>
             <div className='quest-info'>
                 <div className='name-bird'>{name}</div>
                 <ReactAudioPlayer
                     src={randomBird.audio}
-                    controls
-                />
+                    controls/>
                 {console.log(randomBird)}
             </div>
         </div>
