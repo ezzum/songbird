@@ -22,3 +22,9 @@
     transition: .1s;
     background-color: #444;
 }
+.win-item {
+    background-color: #20e69a;
+}
+.error-item {
+    background-color: #e44343;
+}

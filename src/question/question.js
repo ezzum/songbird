@@ -25,7 +25,6 @@ const Question = ( {data, randomIdx, levelWin} ) => {
                 <ReactAudioPlayer
                     src={randomBird.audio}
                     controls/>
-                {console.log(randomBird)}
             </div>
         </div>
     );

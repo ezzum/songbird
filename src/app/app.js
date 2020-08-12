@@ -23,7 +23,7 @@ class App extends Component {
     activeLevel = this.state.itemPagination.filter((elem) => elem.active);
 
     checkIds = (id) => {
-        if (this.state.birdId === id) {
+        if (this.state.birdId === id && !this.state.levelWin) {
             this.setState({
                 levelWin: true
             })
@@ -39,7 +39,9 @@ class App extends Component {
                 randomIdx = {this.state.birdId}/>
                 <div className='bottom-block'>
                     <OptionsBlock data = {this.activeLevel}
-                    getIdClick = {(id) => this.checkIds(id)}/>
+                    getIdClick = {(id) => this.checkIds(id)}
+                    birdId = {this.state.birdId}
+                    levelWin = {this.state.levelWin}/>
                 </div>
                 {console.log(this.state)}
             </div>

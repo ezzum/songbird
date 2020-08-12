@@ -1,15 +1,49 @@
-import React from 'react';
+import React, {Component} from 'react';
+import winSound from '../sound/win.mp3';
+import errSound from '../sound/error.mp3';
 
-const Options = ({option, getIdClick}) => {
-    const {id, name} = option;
-    return (
-        <li className='list-group-item'
-            onClick = {() => getIdClick(id)}
-        >
-            <span className='li-btn'></span>
-            {name}
-        </li>
-    );
+class Options extends Component {
+    state = {
+        error: false,
+        win: false
+    }
+
+    clickItem = (id) => {
+        const {getIdClick, birdId, levelWin} = this.props;
+        const audioWin = new Audio(winSound);
+        const audioError = new Audio(errSound);
+
+        getIdClick(id)
+        if (birdId === id && !levelWin) {
+            audioWin.play();
+            this.setState({
+                win: true
+            });
+        }
+        if (birdId !== id && !levelWin) {
+            audioError.play();
+            this.setState({
+                error: true
+            });
+        }
+    }
+
+    render() {
+        const {option} = this.props;
+        const {id, name} = option;
+        let className = 'li-btn';
+
+        if (this.state.win) className += ' win-item';
+        if (this.state.error) className += ' error-item';
+
+        return (
+            <li className='list-group-item'
+                onClick = {() => this.clickItem(id)}>
+                <span className={className}></span>
+                {name}
+            </li>
+        );
+    }
 };
 
 export default Options;
