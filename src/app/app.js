@@ -3,6 +3,7 @@ import birdData from '../data/birdsData';
 import Header from '../header/header';
 import Question from '../question/question';
 import OptionsBlock from '../options/options-block';
+import Description from '../descriptions/description';
 import './app.css';
 
 class App extends Component {
@@ -17,12 +18,16 @@ class App extends Component {
             {label: 'Морские птицы', data: birdData[5], active: false, id: 6},
         ],
         birdId: Math.floor(Math.random() * 6) + 1,
-        levelWin: false
+        levelWin: false,
+        currentId: 0
     }
 
     activeLevel = this.state.itemPagination.filter((elem) => elem.active);
 
     checkIds = (id) => {
+        this.setState({
+            currentId: id
+        })
         if (this.state.birdId === id && !this.state.levelWin) {
             this.setState({
                 levelWin: true
@@ -42,6 +47,9 @@ class App extends Component {
                     getIdClick = {(id) => this.checkIds(id)}
                     birdId = {this.state.birdId}
                     levelWin = {this.state.levelWin}/>
+                    <Description
+                    currentId = {this.state.currentId}
+                    activeLevel = {this.activeLevel[0].data}/>
                 </div>
                 {console.log(this.state)}
             </div>
