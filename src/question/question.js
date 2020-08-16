@@ -23,7 +23,8 @@ const Question = ( {data, randomIdx, levelWin} ) => {
                 <div className='name-bird'>{name}</div>
                 <ReactAudioPlayer
                     src={randomBird.audio}
-                    controls/>
+                    controls
+                />
             </div>
         </div>
     );

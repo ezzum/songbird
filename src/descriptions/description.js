@@ -31,8 +31,9 @@ const Description = ({currentId, activeLevel}) => {
                     <h4 className = 'descrip-name'>{nameBird}</h4>
                     <div className = 'descrip-name-lat'>{nameBirdLat}</div>
                     <ReactAudioPlayer
-                    src = {src}
-                    controls/>
+                        src = {src}
+                        controls
+                    />
                 </div>
             </div>
             <div className = "descrip-text">{text}</div>

@@ -11,7 +11,8 @@ const Header = ({items, activeId}) => {
             <li key={item.id} className='page-item'>
                 <Pagination 
                     item = {item}
-                    activeId = {activeId}/>
+                    activeId = {activeId}
+                />
             </li>
         );
     });

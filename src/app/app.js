@@ -60,23 +60,28 @@ class App extends Component {
             <div className='app'>
                 <Header 
                     items = {this.itemPagination}
-                    activeId = {this.itemPagination[this.state.activeLevel].id}/>
+                    activeId = {this.itemPagination[this.state.activeLevel].id}
+                />
                 <Question 
                     data = {this.itemPagination[this.state.activeLevel]}
                     levelWin = {this.state.levelWin}
-                    randomIdx = {this.state.birdId}/>
+                    randomIdx = {this.state.birdId}
+                />
                 <div className='bottom-block'>
                     <OptionsBlock data = {this.itemPagination[this.state.activeLevel]}
-                    getIdClick = {(id) => this.checkIds(id)}
-                    birdId = {this.state.birdId}
-                    levelWin = {this.state.levelWin}/>
+                        getIdClick = {(id) => this.checkIds(id)}
+                        birdId = {this.state.birdId}
+                        levelWin = {this.state.levelWin}
+                    />
                     <Description
-                    currentId = {this.state.currentId}
-                    activeLevel = {this.itemPagination[this.state.activeLevel]}/>
+                        currentId = {this.state.currentId}
+                        activeLevel = {this.itemPagination[this.state.activeLevel]}
+                    />
                 </div>
                 <NextLevelButton
-                levelWin = {this.state.levelWin}
-                nextLevel = {this.nextLevel}/>
+                    levelWin = {this.state.levelWin}
+                    nextLevel = {this.nextLevel}
+                />
                 {console.log(this.state)}
             </div>
         );

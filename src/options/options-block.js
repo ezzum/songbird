@@ -9,9 +9,10 @@ const OptionsBlock = ({data, getIdClick, birdId, levelWin}) => {
     const elements = options.map((elem) => {
         return (
             <Options option={elem} key={elem.id}
-            getIdClick = {getIdClick}
-            birdId = {birdId}
-            levelWin = {levelWin}/>
+                getIdClick = {getIdClick}
+                birdId = {birdId}
+                levelWin = {levelWin}
+            />
         );
     })
 
