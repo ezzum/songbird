@@ -4,7 +4,7 @@ import './description.css';
 
 const Description = ({currentId, activeLevel}) => {
 
-    const [currentItem] = activeLevel.filter((elem) => elem.id === currentId);
+    const [currentItem] = activeLevel.data.filter((elem) => elem.id === currentId);
     let descripTopClassName = 'descrip-top hide';
     let nameBird = '';
     let nameBirdLat = '';

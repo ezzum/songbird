@@ -1,24 +1,18 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Pagination extends Component {
-    state = {
-        active: this.props.active,
+const Pagination = ({item, activeId}) => {
+    const {id, label} = item;
+    let className = 'page-link'
+
+    if (id === activeId) {
+        className += ' active';
     }
+    return (
+        <a className={className} href="/#">
+            {label}
+        </a>
+    )
 
-    render() {
-        const {label} = this.props;
-        const {active} = this.state;
-        let className = 'page-link'
-
-        if (active) {
-            className += ' active';
-        }
-        return (
-            <a className={className} href="/#">
-                {label}
-            </a>
-        )
-    }
 }
 
 export default Pagination;

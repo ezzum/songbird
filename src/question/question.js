@@ -3,9 +3,8 @@ import ReactAudioPlayer from 'react-audio-player';
 import './question.css';
 
 const Question = ( {data, randomIdx, levelWin} ) => {
-
-    const [level] = data;
-    const randomBird = level.data[randomIdx-1];
+    
+    const randomBird = data.data[randomIdx-1];
     let {name} = randomBird;
     const image = {
         backgroundImage: `url(${randomBird.image})`

@@ -1,0 +1,13 @@
+.next-level {
+    width: 100%;
+    color: #fff;
+    background-color: #303030;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.next-level:hover {
+    color: #fff;
+}
+.active {
+    background-color: #00bc8c;
+}

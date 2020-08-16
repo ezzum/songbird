@@ -3,8 +3,8 @@ import Options from './options';
 import './options-block.css';
 
 const OptionsBlock = ({data, getIdClick, birdId, levelWin}) => {
-    const [level] = data;
-    const options = level.data;
+
+    const options = data.data;
 
     const elements = options.map((elem) => {
         return (

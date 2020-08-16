@@ -16,15 +16,17 @@ class Options extends Component {
         getIdClick(id)
         if (birdId === id && !levelWin) {
             audioWin.play();
-            this.setState({
-                win: true
-            });
+            // this.setState({
+            //     win: true
+            // });
+            document.getElementById(id).classList.add('win-item')
         }
         if (birdId !== id && !levelWin) {
             audioError.play();
-            this.setState({
-                error: true
-            });
+            // this.setState({
+            //     error: true
+            // });
+            document.getElementById(id).classList.add('error-item')
         }
     }
 
@@ -39,7 +41,7 @@ class Options extends Component {
         return (
             <li className='list-group-item'
                 onClick = {() => this.clickItem(id)}>
-                <span className={className}></span>
+                <span className={className} id={id}></span>
                 {name}
             </li>
         );

@@ -2,14 +2,16 @@ import React from 'react';
 import './header.css';
 import Pagination from './pagination';
 
-const Header = ({items}) => {
+const Header = ({items, activeId}) => {
 
     const score = 0
 
     const elements = items.map((item) => {
         return (
             <li key={item.id} className='page-item'>
-                <Pagination {...item}/>
+                <Pagination 
+                    item = {item}
+                    activeId = {activeId}/>
             </li>
         );
     });
