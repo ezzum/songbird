@@ -13,7 +13,17 @@ class App extends Component {
         birdId: Math.floor(Math.random() * 6) + 1,
         levelWin: false,
         currentId: 0,
-        activeLevel: 0
+        activeLevel: 0,
+        score: 0,
+        scoreVisible: 0,
+        optionsScore: [
+            {score: 0},
+            {score: 0},
+            {score: 0},
+            {score: 0},
+            {score: 0},
+            {score: 0},
+        ]
     }
 
     itemPagination = [
@@ -26,12 +36,44 @@ class App extends Component {
     ];
 
     checkIds = (id) => {
+        const {birdId, levelWin, optionsScore, score} = this.state;
+
         this.setState({
             currentId: id
         })
-        if (this.state.birdId === id && !this.state.levelWin) {
-            this.setState({
-                levelWin: true
+        if (birdId === id && !levelWin) {
+            this.setState(() => {
+                const newScore = score + 5;
+                const newScoreVisible = newScore;
+                const idx = id - 1;
+                const newStateItem = {state: 5};
+                const newArray = [
+                    ...optionsScore.slice(0, idx),
+                    newStateItem,
+                    ...optionsScore.slice(idx + 1)
+                ];
+                return {
+                    optionsScore: newArray,
+                    levelWin: true,
+                    score: newScore,
+                    scoreVisible: newScoreVisible
+                }
+            })
+        }
+        if (birdId !== id && !levelWin) {
+            this.setState(() => {
+                const newScore = score - 1;
+                const idx = id - 1;
+                const newStateItem = {state: -1};
+                const newArray = [
+                    ...optionsScore.slice(0, idx),
+                    newStateItem,
+                    ...optionsScore.slice(idx + 1)
+                ];
+                return {
+                    optionsScore: newArray,
+                    score: newScore
+                }
             })
         }
     }
@@ -45,13 +87,17 @@ class App extends Component {
                     birdId: Math.floor(Math.random() * 6) + 1,
                     levelWin: false,
                     currentId: 0,
-                    activeLevel: nextLevel
+                    activeLevel: nextLevel,
+                    optionsScore: [
+                        {score: 0},
+                        {score: 0},
+                        {score: 0},
+                        {score: 0},
+                        {score: 0},
+                        {score: 0},
+                    ]
                 }
             });
-            document.querySelectorAll('.li-btn').forEach((el) => {
-                el.classList.remove('win-item');
-                el.classList.remove('error-item');
-            })
         }
     }
 
@@ -61,6 +107,7 @@ class App extends Component {
                 <Header 
                     items = {this.itemPagination}
                     activeId = {this.itemPagination[this.state.activeLevel].id}
+                    scoreVisible = {this.state.scoreVisible}
                 />
                 <Question 
                     data = {this.itemPagination[this.state.activeLevel]}
@@ -68,10 +115,12 @@ class App extends Component {
                     randomIdx = {this.state.birdId}
                 />
                 <div className='bottom-block'>
-                    <OptionsBlock data = {this.itemPagination[this.state.activeLevel]}
+                    <OptionsBlock 
+                        data = {this.itemPagination[this.state.activeLevel]}
                         getIdClick = {(id) => this.checkIds(id)}
                         birdId = {this.state.birdId}
                         levelWin = {this.state.levelWin}
+                        optionsScore = {this.state.optionsScore}
                     />
                     <Description
                         currentId = {this.state.currentId}

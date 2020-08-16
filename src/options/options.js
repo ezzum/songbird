@@ -2,7 +2,7 @@ import React from 'react';
 import winSound from '../sound/win.mp3';
 import errSound from '../sound/error.mp3';
 
-const Options = ({option, getIdClick, birdId, levelWin}) => {
+const Options = ({option, getIdClick, birdId, levelWin, optionsScoreItem}) => {
     const {id, name} = option;
     let className = 'li-btn';
 
@@ -14,13 +14,14 @@ const Options = ({option, getIdClick, birdId, levelWin}) => {
 
         if (birdId === id && !levelWin) {
             audioWin.play();
-            document.getElementById(id).classList.add('win-item');
         }
         if (birdId !== id && !levelWin) {
             audioError.play();
-            document.getElementById(id).classList.add('error-item');
         }
     }
+
+    if (optionsScoreItem > 0) className += ' win-item';
+    if (optionsScoreItem < 0) className += ' error-item';
 
     return (
         <li className='list-group-item'

@@ -2,9 +2,7 @@ import React from 'react';
 import './header.css';
 import Pagination from './pagination';
 
-const Header = ({items, activeId}) => {
-
-    const score = 0
+const Header = ({items, activeId, scoreVisible}) => {
 
     const elements = items.map((item) => {
         return (
@@ -21,7 +19,7 @@ const Header = ({items, activeId}) => {
         <div className='header'>
             <div className='top-head'>
                 <div className='logo'></div>
-                <h4>Score: {score}</h4>
+                <h4>Score: {scoreVisible}</h4>
             </div>
             <ul className="pagination">
                 {elements}
