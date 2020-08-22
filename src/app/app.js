@@ -44,6 +44,7 @@ class App extends Component {
             currentId: id
         })
         if (birdId === id && !levelWin) {
+            document.querySelector('.react-audio-player').pause();
             this.setState(() => {
                 const newScore = score + 5;
                 const idx = id - 1;

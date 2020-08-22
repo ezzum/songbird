@@ -9,11 +9,12 @@ const Question = ( {data, randomIdx, levelWin} ) => {
     const image = {
         backgroundImage: `url(${randomBird.image})`
     };
-
+    
+    const src = randomBird.audio;
     
     if (!levelWin) {
         name = '******';
-        image.backgroundImage = ''
+        image.backgroundImage = '';
     }
 
     return (
@@ -22,7 +23,7 @@ const Question = ( {data, randomIdx, levelWin} ) => {
             <div className='quest-info'>
                 <div className='name-bird'>{name}</div>
                 <ReactAudioPlayer
-                    src={randomBird.audio}
+                    src={src}
                     controls
                 />
             </div>
