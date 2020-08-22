@@ -131,20 +131,19 @@ class App extends Component {
     }
 
     render() {
-        const {gameOver} = this.state;
+        const {gameOver, activeLevel, scoreVisible, levelWin, birdId, optionsState, currentId} = this.state;
         if (gameOver) {
             return(
                 <div className='app'>
                 <Header 
                     items = {this.itemPagination}
-                    activeId = {this.itemPagination[this.state.activeLevel].id}
-                    scoreVisible = {this.state.scoreVisible}
+                    activeId = {this.itemPagination[activeLevel].id}
+                    scoreVisible = {scoreVisible}
                 />
                 <GameOver
-                    scoreVisible = {this.state.scoreVisible}
+                    scoreVisible = {scoreVisible}
                     newGame = {this.newGame}
                 />
-                {console.log(this.state)}
             </div>
             );
         }
@@ -152,32 +151,32 @@ class App extends Component {
             <div className='app'>
                 <Header 
                     items = {this.itemPagination}
-                    activeId = {this.itemPagination[this.state.activeLevel].id}
-                    scoreVisible = {this.state.scoreVisible}
+                    activeId = {this.itemPagination[activeLevel].id}
+                    scoreVisible = {scoreVisible}
                 />
                 <Question 
-                    data = {this.itemPagination[this.state.activeLevel]}
-                    levelWin = {this.state.levelWin}
-                    randomIdx = {this.state.birdId}
+                    data = {this.itemPagination[activeLevel]}
+                    levelWin = {levelWin}
+                    randomIdx = {birdId}
                 />
                 <div className='bottom-block'>
                     <OptionsBlock 
-                        data = {this.itemPagination[this.state.activeLevel]}
+                        data = {this.itemPagination[activeLevel]}
                         getIdClick = {(id) => this.checkIds(id)}
-                        birdId = {this.state.birdId}
-                        levelWin = {this.state.levelWin}
-                        optionsState = {this.state.optionsState}
+                        birdId = {birdId}
+                        levelWin = {levelWin}
+                        optionsState = {optionsState}
                     />
                     <Description
-                        currentId = {this.state.currentId}
-                        activeLevel = {this.itemPagination[this.state.activeLevel]}
+                        currentId = {currentId}
+                        activeLevel = {this.itemPagination[activeLevel]}
                     />
                 </div>
                 <NextLevelButton
-                    levelWin = {this.state.levelWin}
+                    levelWin = {levelWin}
                     nextLevel = {this.nextLevel}
                 />
-                {console.log(this.state)}
+                {console.log('Правильный ответ:', this.itemPagination[activeLevel].data[birdId-1].name)}
             </div>
         );
     }
