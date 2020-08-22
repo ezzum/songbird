@@ -5,6 +5,7 @@ import Question from '../question/question';
 import OptionsBlock from '../options/options-block';
 import Description from '../descriptions/description';
 import NextLevelButton from '../nextLevelButton/nextLevelButton';
+import GameOver from '../game-over/gameOver';
 import './app.css';
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
         activeLevel: 0,
         score: 0,
         scoreVisible: 0,
+        gameOver: false,
         optionsState: [
             {correct: 0},
             {correct: 0},
@@ -78,8 +80,16 @@ class App extends Component {
     }
 
     nextLevel = () => {
-        if (this.state.levelWin) {
-            this.setState(({activeLevel}) => {
+        const lastLevel = 5;
+        const {levelWin, activeLevel} = this.state;
+        if (levelWin) {
+            if (activeLevel === lastLevel) {
+                this.setState({
+                    gameOver: true
+                });
+                return;
+            }
+            this.setState(() => {
                 const nextLevel = activeLevel + 1;
 
                 return {
@@ -100,7 +110,44 @@ class App extends Component {
         }
     }
 
+    newGame = () => {
+        this.setState({
+            birdId: Math.floor(Math.random() * 6) + 1,
+            levelWin: false,
+            currentId: 0,
+            activeLevel: 0,
+            score: 0,
+            scoreVisible: 0,
+            gameOver: false,
+            optionsState: [
+                {correct: 0},
+                {correct: 0},
+                {correct: 0},
+                {correct: 0},
+                {correct: 0},
+                {correct: 0},
+            ]
+        })
+    }
+
     render() {
+        const {gameOver} = this.state;
+        if (gameOver) {
+            return(
+                <div className='app'>
+                <Header 
+                    items = {this.itemPagination}
+                    activeId = {this.itemPagination[this.state.activeLevel].id}
+                    scoreVisible = {this.state.scoreVisible}
+                />
+                <GameOver
+                    scoreVisible = {this.state.scoreVisible}
+                    newGame = {this.newGame}
+                />
+                {console.log(this.state)}
+            </div>
+            );
+        }
         return(
             <div className='app'>
                 <Header 
