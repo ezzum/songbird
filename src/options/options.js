@@ -2,7 +2,7 @@ import React from 'react';
 import winSound from '../sound/win.mp3';
 import errSound from '../sound/error.mp3';
 
-const Options = ({option, getIdClick, birdId, levelWin, optionsScoreItem}) => {
+const Options = ({option, getIdClick, birdId, levelWin, optionsStateItem}) => {
     const {id, name} = option;
     let className = 'li-btn';
 
@@ -20,8 +20,8 @@ const Options = ({option, getIdClick, birdId, levelWin, optionsScoreItem}) => {
         }
     }
 
-    if (optionsScoreItem > 0) className += ' win-item';
-    if (optionsScoreItem < 0) className += ' error-item';
+    if (optionsStateItem === true) className += ' win-item';
+    if (optionsStateItem === false) className += ' error-item';
 
     return (
         <li className='list-group-item'

@@ -16,13 +16,13 @@ class App extends Component {
         activeLevel: 0,
         score: 0,
         scoreVisible: 0,
-        optionsScore: [
-            {score: 0},
-            {score: 0},
-            {score: 0},
-            {score: 0},
-            {score: 0},
-            {score: 0},
+        optionsState: [
+            {correct: 0},
+            {correct: 0},
+            {correct: 0},
+            {correct: 0},
+            {correct: 0},
+            {correct: 0},
         ]
     }
 
@@ -36,7 +36,7 @@ class App extends Component {
     ];
 
     checkIds = (id) => {
-        const {birdId, levelWin, optionsScore, score} = this.state;
+        const {birdId, levelWin, optionsState, score} = this.state;
 
         this.setState({
             currentId: id
@@ -44,19 +44,18 @@ class App extends Component {
         if (birdId === id && !levelWin) {
             this.setState(() => {
                 const newScore = score + 5;
-                const newScoreVisible = newScore;
                 const idx = id - 1;
-                const newStateItem = {state: 5};
+                const newStateItem = {correct: true};
                 const newArray = [
-                    ...optionsScore.slice(0, idx),
+                    ...optionsState.slice(0, idx),
                     newStateItem,
-                    ...optionsScore.slice(idx + 1)
+                    ...optionsState.slice(idx + 1)
                 ];
                 return {
-                    optionsScore: newArray,
+                    optionsState: newArray,
                     levelWin: true,
                     score: newScore,
-                    scoreVisible: newScoreVisible
+                    scoreVisible: newScore
                 }
             })
         }
@@ -64,14 +63,14 @@ class App extends Component {
             this.setState(() => {
                 const newScore = score - 1;
                 const idx = id - 1;
-                const newStateItem = {state: -1};
+                const newStateItem = {correct: false};
                 const newArray = [
-                    ...optionsScore.slice(0, idx),
+                    ...optionsState.slice(0, idx),
                     newStateItem,
-                    ...optionsScore.slice(idx + 1)
+                    ...optionsState.slice(idx + 1)
                 ];
                 return {
-                    optionsScore: newArray,
+                    optionsState: newArray,
                     score: newScore
                 }
             })
@@ -88,13 +87,13 @@ class App extends Component {
                     levelWin: false,
                     currentId: 0,
                     activeLevel: nextLevel,
-                    optionsScore: [
-                        {score: 0},
-                        {score: 0},
-                        {score: 0},
-                        {score: 0},
-                        {score: 0},
-                        {score: 0},
+                    optionsState: [
+                        {correct: 0},
+                        {correct: 0},
+                        {correct: 0},
+                        {correct: 0},
+                        {correct: 0},
+                        {correct: 0},
                     ]
                 }
             });
@@ -120,7 +119,7 @@ class App extends Component {
                         getIdClick = {(id) => this.checkIds(id)}
                         birdId = {this.state.birdId}
                         levelWin = {this.state.levelWin}
-                        optionsScore = {this.state.optionsScore}
+                        optionsState = {this.state.optionsState}
                     />
                     <Description
                         currentId = {this.state.currentId}

@@ -2,7 +2,7 @@ import React from 'react';
 import Options from './options';
 import './options-block.css';
 
-const OptionsBlock = ({data, getIdClick, birdId, levelWin, optionsScore}) => {
+const OptionsBlock = ({data, getIdClick, birdId, levelWin, optionsState}) => {
 
     const options = data.data;
 
@@ -12,7 +12,7 @@ const OptionsBlock = ({data, getIdClick, birdId, levelWin, optionsScore}) => {
                 getIdClick = {getIdClick}
                 birdId = {birdId}
                 levelWin = {levelWin}
-                optionsScoreItem = {optionsScore[idx].state}
+                optionsStateItem = {optionsState[idx].correct}
             />
         );
     })
