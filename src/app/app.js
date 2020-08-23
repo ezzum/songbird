@@ -1,0 +1,187 @@
+import React, {Component} from 'react';
+import birdData from '../data/birdsData';
+import Header from '../header/header';
+import Question from '../question/question';
+import OptionsBlock from '../options/options-block';
+import Description from '../descriptions/description';
+import NextLevelButton from '../nextLevelButton/nextLevelButton';
+import GameOver from '../game-over/gameOver';
+import './app.css';
+
+class App extends Component {
+
+    state = {
+        birdId: Math.floor(Math.random() * 6) + 1,
+        levelWin: false,
+        currentId: 0,
+        activeLevel: 0,
+        score: 0,
+        scoreVisible: 0,
+        gameOver: false,
+        optionsState: [
+            {correct: 0},
+            {correct: 0},
+            {correct: 0},
+            {correct: 0},
+            {correct: 0},
+            {correct: 0},
+        ]
+    }
+
+    itemPagination = [
+        {label: 'Разминка', data: birdData[0], id: 1},
+        {label: 'Воробьиные', data: birdData[1], id: 2},
+        {label: 'Лесные птицы', data: birdData[2], id: 3},
+        {label: 'Певчие птицы', data: birdData[3], id: 4},
+        {label: 'Хищные птицы', data: birdData[4], id: 5},
+        {label: 'Морские птицы', data: birdData[5], id: 6},
+    ];
+
+    checkIds = (id) => {
+        const {birdId, levelWin, optionsState, score} = this.state;
+
+        this.setState({
+            currentId: id
+        })
+        if (birdId === id && !levelWin) {
+            document.querySelector('.react-audio-player').pause();
+            this.setState(() => {
+                const newScore = score + 5;
+                const idx = id - 1;
+                const newStateItem = {correct: true};
+                const newArray = [
+                    ...optionsState.slice(0, idx),
+                    newStateItem,
+                    ...optionsState.slice(idx + 1)
+                ];
+                return {
+                    optionsState: newArray,
+                    levelWin: true,
+                    score: newScore,
+                    scoreVisible: newScore
+                }
+            })
+        }
+        if (birdId !== id && !levelWin) {
+            this.setState(() => {
+                const newScore = score - 1;
+                const idx = id - 1;
+                const newStateItem = {correct: false};
+                const newArray = [
+                    ...optionsState.slice(0, idx),
+                    newStateItem,
+                    ...optionsState.slice(idx + 1)
+                ];
+                return {
+                    optionsState: newArray,
+                    score: newScore
+                }
+            })
+        }
+    }
+
+    nextLevel = () => {
+        const lastLevel = 5;
+        const {levelWin, activeLevel} = this.state;
+        if (levelWin) {
+            if (activeLevel === lastLevel) {
+                this.setState({
+                    gameOver: true
+                });
+                return;
+            }
+            this.setState(() => {
+                const nextLevel = activeLevel + 1;
+
+                return {
+                    birdId: Math.floor(Math.random() * 6) + 1,
+                    levelWin: false,
+                    currentId: 0,
+                    activeLevel: nextLevel,
+                    optionsState: [
+                        {correct: 0},
+                        {correct: 0},
+                        {correct: 0},
+                        {correct: 0},
+                        {correct: 0},
+                        {correct: 0},
+                    ]
+                }
+            });
+        }
+    }
+
+    newGame = () => {
+        this.setState({
+            birdId: Math.floor(Math.random() * 6) + 1,
+            levelWin: false,
+            currentId: 0,
+            activeLevel: 0,
+            score: 0,
+            scoreVisible: 0,
+            gameOver: false,
+            optionsState: [
+                {correct: 0},
+                {correct: 0},
+                {correct: 0},
+                {correct: 0},
+                {correct: 0},
+                {correct: 0},
+            ]
+        })
+    }
+
+    render() {
+        const {gameOver, activeLevel, scoreVisible, levelWin, birdId, optionsState, currentId} = this.state;
+        if (gameOver) {
+            return(
+                <div className='app'>
+                <Header 
+                    items = {this.itemPagination}
+                    activeId = {this.itemPagination[activeLevel].id}
+                    scoreVisible = {scoreVisible}
+                />
+                <GameOver
+                    scoreVisible = {scoreVisible}
+                    newGame = {this.newGame}
+                />
+            </div>
+            );
+        }
+        return(
+            <div className='app'>
+                <Header 
+                    items = {this.itemPagination}
+                    activeId = {this.itemPagination[activeLevel].id}
+                    scoreVisible = {scoreVisible}
+                />
+                <Question 
+                    data = {this.itemPagination[activeLevel]}
+                    levelWin = {levelWin}
+                    randomIdx = {birdId}
+                />
+                <div className='bottom-block'>
+                    <OptionsBlock 
+                        data = {this.itemPagination[activeLevel]}
+                        getIdClick = {(id) => this.checkIds(id)}
+                        birdId = {birdId}
+                        levelWin = {levelWin}
+                        optionsState = {optionsState}
+                    />
+                    <Description
+                        currentId = {currentId}
+                        activeLevel = {this.itemPagination[activeLevel]}
+                    />
+                </div>
+                <NextLevelButton
+                    levelWin = {levelWin}
+                    nextLevel = {this.nextLevel}
+                />
+                {console.log('Правильный ответ:', this.itemPagination[activeLevel].data[birdId-1].name)}
+            </div>
+        );
+    }
+    
+}
+
+export default App;

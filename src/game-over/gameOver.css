@@ -1,0 +1,10 @@
+.game-over-block {
+    width: 100%;
+    margin: 10px auto;
+    background-color: #303030;
+    padding: 60px 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

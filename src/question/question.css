@@ -1,0 +1,39 @@
+.quest-block {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #303030;
+    padding: 15px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+}
+.quest-info {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 20px;
+}
+.quest-image {
+    width: 200px;
+    height: 150px;
+    background-image: url(../img/bird.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    margin: 0 20px;
+}
+.name-bird {
+    margin: 20px 0;
+    font-size: 25px;
+}
+.react-audio-player {
+    width: 100%
+}
+
+@media screen and (max-width: 600px) {
+    .quest-info {
+        width: 100%;
+    }
+}
