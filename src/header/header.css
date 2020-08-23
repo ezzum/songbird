@@ -20,6 +20,9 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    overflow: hidden;
 }
 .page-item {
     flex-grow: 1;
@@ -32,6 +35,24 @@
     pointer-events: none;
     border: none;
 }
+.page-item:first-child .page-link,
+.page-item:last-child .page-link {
+    border-radius: 0;
+}
+
 .active {
     background-color: #00bc8c;
+}
+
+@media screen and (max-width: 600px) {
+    .logo {
+        width: 150px;
+        height: 50px;
+    }
+    .score {
+        font-size: 20px;
+    }
+    .page-link {
+        font-size: 14px;
+    }
 }

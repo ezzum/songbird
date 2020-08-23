@@ -1,6 +1,3 @@
-.bottom-block {
-    margin-top: 20px;
-}
 .options-block {
     width: 30%;
 }
@@ -27,4 +24,10 @@
 }
 .error-item {
     background-color: #e44343;
+}
+
+@media screen and (max-width: 600px) {
+    .options-block {
+        width: 100%;
+    }
 }

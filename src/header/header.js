@@ -19,7 +19,7 @@ const Header = ({items, activeId, scoreVisible}) => {
         <div className='header'>
             <div className='top-head'>
                 <div className='logo'></div>
-                <h4>Score: {scoreVisible}</h4>
+                <h4 className='score'>Score: {scoreVisible}</h4>
             </div>
             <ul className="pagination">
                 {elements}

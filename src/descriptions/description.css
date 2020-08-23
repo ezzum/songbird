@@ -7,13 +7,15 @@
 .descrip-top {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 .descrip-top-right {
     width: 60%;
     display: flex;
     flex-direction: column;
+    margin: 10px;
     justify-content: space-evenly;
 }
 .descrip-image {
@@ -23,7 +25,15 @@
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 10px;
+    margin: 10px;
 }
 .hide {
     display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .description {
+        width: 100%;
+        margin-top: 20px;
+    }
 }
